@@ -5,3 +5,4 @@ export async function createTable(){
         db.exec('CREATE TABLE IF NOT EXISTS Usuario ( id INTEGER PRIMARY KEY, hora date, mensagem varchar(255));')
     })
 }
+

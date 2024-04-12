@@ -8,3 +8,15 @@ export  async  function  openDb  ( )  {
     driver : sqlite3 . Database 
   } ) 
 }
+
+export async function createTable(){
+  openDb().then(db=>{
+      db.exec('CREATE TABLE IF NOT EXISTS Registros_chat ( id_user INTEGER, mensagem varchar(255));')
+  })
+}
+
+export async function dbInsert(id, mensagem){
+  openDb().then(db=>{
+      db.run('INSERT or IGNORE INTO Registros_chat (id_user, mensagem) VALUES (?,?)', [id, mensagem])
+  })
+}

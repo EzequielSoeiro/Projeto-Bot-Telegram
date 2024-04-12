@@ -1,9 +1,10 @@
 // import { openDb } from './configDB.js';
-import { createTable } from './controler/usuario.js';
+import { createTable } from './configDB.js';
+import { dbInsert } from './configDB.js';
 
 import TelegramBot from 'node-telegram-bot-api';
 
-const token = '6868543118:AAFEdwWo1LsZpZnvNtNQjFxesz9a8b-wMo0';
+const token = '7160841071:AAE9YJ8UCciYpM8kQ-kx6I7ZiWwcWBdvIMo';
 
 const bot = new TelegramBot(token, {polling: true, request: {agentOptions: {rejectUnauthorized: false}}});
 
@@ -33,10 +34,12 @@ bot.on('photo', async function(msg){
 
     bot.sendPhoto(chatId, photo, { caption: "Toma aí GOKU"})
 })
-
+  
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   const mensagem = msg.text;
+
+  dbInsert(chatId, mensagem)
 
   bot.sendMessage(chatId, mensagem);
 });
