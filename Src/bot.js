@@ -3,9 +3,9 @@ import { createTable } from './controler/usuario.js';
 
 import TelegramBot from 'node-telegram-bot-api';
 
-const token = '7160841071:AAE9YJ8UCciYpM8kQ-kx6I7ZiWwcWBdvIMo';
+const token = '6868543118:AAFEdwWo1LsZpZnvNtNQjFxesz9a8b-wMo0';
 
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, {polling: true, request: {agentOptions: {rejectUnauthorized: false}}});
 
 createTable();
 
@@ -14,8 +14,15 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
   const resp = match[1]; 
 
+
   bot.sendMessage(chatId, resp);
 });
+
+/**
+ bot.on('polling_error', (error) => {
+   console.log(error.code);  // => 'EFATAL'
+ }); 
+ */
 
 bot.on('photo', async function(msg){
     const chatId = msg.chat.id;
@@ -29,6 +36,7 @@ bot.on('photo', async function(msg){
 
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
+  const mensagem = msg.text;
 
-  bot.sendMessage(chatId, 'Fala doido');
+  bot.sendMessage(chatId, mensagem);
 });
