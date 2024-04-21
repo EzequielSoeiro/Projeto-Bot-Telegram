@@ -11,12 +11,12 @@ export  async  function  openDb  ( )  {
 
 export async function createTable(){
   openDb().then(db=>{
-      db.exec('CREATE TABLE IF NOT EXISTS Registros_chat ( id_user INTEGER, mensagem varchar(255));')
+      db.exec('CREATE TABLE IF NOT EXISTS usuarios ( id INTEGER PRIMARY KEY, email varchar(255));')
   })
 }
 
-export async function dbInsert(id, mensagem){
+export async function dbInsert(id, email){
   openDb().then(db=>{
-      db.run('INSERT or IGNORE INTO Registros_chat (id_user, mensagem) VALUES (?,?)', [id, mensagem])
+      db.run('INSERT or IGNORE INTO usuarios (id, email) VALUES (?,?)', [id, email])
   })
 }
