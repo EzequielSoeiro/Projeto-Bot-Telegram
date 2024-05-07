@@ -1,5 +1,3 @@
-# C1 - Desenvolvimento de Aplicações web II 
-
 Libs necessárias para inicialização do projeto 
 
 * npm i node-telegram-bot-api
